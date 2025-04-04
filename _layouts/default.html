@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&display=swap">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ '/assets/img/favicon.ico' | prepend: site.baseurl }}">
+  
+  <!-- SEO -->
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
+  
+  <!-- Custom Head -->
+  {% include custom-head.html %}
+</head>
+
+<body class="{% if page.feature-img %}feature-image{% endif %}">
+  <header class="site-header">
+    <div class="site-header-container">
+      <div class="site-title">
+        <a href="{{ site.baseurl }}/">
+          {{ site.title }}
+        </a>
+      </div>
+      <div class="site-description">
+        {{ site.description }}
+      </div>
+    </div>
+    
+    {% include navigation.html %}
+  </header>
+
+  <div class="page-content">
+    <div class="wrapper">
+      {{ content }}
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-container">
+      <div class="site-info">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }} &bull; Tutti i diritti riservati</p>
+      </div>
+      <div class="site-social">
+        {% if site.github_username %}
+        <a href="https://github.com/{{ site.github_username }}" title="GitHub" target="_blank"><i class="fa fa-github"></i></a>
+        {% endif %}
+        {% if site.twitter_username %}
+        <a href="https://twitter.com/{{ site.twitter_username }}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+        {% endif %}
+        {% if site.facebook_username %}
+        <a href="https://facebook.com/{{ site.facebook_username }}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+        {% endif %}
+        {% if site.instagram_username %}
+        <a href="https://instagram.com/{{ site.instagram_username }}" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+        {% endif %}
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script src="{{ '/assets/js/main.js' | prepend: site.baseurl }}"></script>
+</body>
+</html>
