@@ -6,67 +6,79 @@
   <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | prepend: site.baseurl }}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&display=swap">
-  
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ '/assets/img/favicon.ico' | prepend: site.baseurl }}">
-  
-  <!-- SEO -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
   
-  <!-- Custom Head -->
   {% include custom-head.html %}
 </head>
-
 <body class="{% if page.feature-img %}feature-image{% endif %}">
   <header class="site-header">
-    <div class="site-header-container">
-      <div class="site-title">
-        <a href="{{ site.baseurl }}/">
-          {{ site.title }}
+    <div class="wrapper">
+      <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+      <nav class="site-nav">
+        <a href="#" class="menu-icon">
+          <svg viewBox="0 0 18 15">
+            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+          </svg>
         </a>
-      </div>
-      <div class="site-description">
-        {{ site.description }}
-      </div>
+        <div class="trigger">
+          {% for page in site.header_pages %}
+            {% assign my_page = site.pages | where: "path", page | first %}
+            {% if my_page.title %}
+            <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </nav>
     </div>
-    
-    {% include navigation.html %}
   </header>
-
+  
   <div class="page-content">
     <div class="wrapper">
       {{ content }}
     </div>
   </div>
-
+  
   <footer class="site-footer">
-    <div class="site-footer-container">
-      <div class="site-info">
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }} &bull; Tutti i diritti riservati</p>
+    <div class="wrapper">
+      <h3 class="footer-heading">{{ site.title }}</h3>
+      <div class="site-contact">
+        <p><strong>Contatti</strong></p>
+        <ul class="social-media-list">
+          {% if site.email %}
+          <li>
+            <a href="mailto:{{ site.email }}">
+              <span class="icon">Email</span>
+              <span class="username">{{ site.email }}</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% for social in site.social %}
+            {% if social.url != null %}
+            <li>
+              <a href="{{ social.url }}">
+                <span class="icon">{{ social.name }}</span>
+                <span class="username">{{ social.username }}</span>
+              </a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
       </div>
-      <div class="site-social">
-        {% if site.github_username %}
-        <a href="https://github.com/{{ site.github_username }}" title="GitHub" target="_blank"><i class="fa fa-github"></i></a>
-        {% endif %}
-        {% if site.twitter_username %}
-        <a href="https://twitter.com/{{ site.twitter_username }}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-        {% endif %}
-        {% if site.facebook_username %}
-        <a href="https://facebook.com/{{ site.facebook_username }}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-        {% endif %}
-        {% if site.instagram_username %}
-        <a href="https://instagram.com/{{ site.instagram_username }}" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
-        {% endif %}
+      <div class="site-signature">
+        <p class="rss-subscribe">Iscriviti <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
       </div>
     </div>
   </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-  <script src="{{ '/assets/js/main.js' | prepend: site.baseurl }}"></script>
+  
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
