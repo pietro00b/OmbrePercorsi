@@ -1,0 +1,58 @@
+title: "Ombre e Percorsi"
+description: "Tracce di luoghi, storie e persone"
+author: "Pietro"
+email: pbarale00@gmail.com
+baseurl: ""
+url: "https://pietro00b.github.io"
+github_username: pietro00b
+
+# SEO settings
+twitter_username: ombreepercorsi
+facebook_username: ombreepercorsi
+instagram_username: ombreepercorsi
+
+# Build settings
+markdown: kramdown
+paginate: 5
+paginate_path: "/pagina/:num/"
+permalink: /:year/:month/:day/:title/
+inter_post_navigation: true
+highlightjs_theme: "monokai-sublime"
+
+# Archive settings
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  permalinks:
+    category: '/categoria/:name/'
+    tag: '/tag/:name/'
+
+# Disqus comments
+disqus_shortname: ombreepercorsi
+
+# Collections
+collections:
+  storie:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "storie"
+    values:
+      layout: "storia"
+  - scope:
+      path: "assets/img"
+    values:
+      image: true
+
+# Plugin
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-archives
+  - jekyll-seo-tag
