@@ -1,44 +1,31 @@
+# Informazioni di base
 title: "Ombre e Percorsi"
 description: "Tracce di luoghi, storie e persone"
 author: "Pietro"
 email: pbarale00@gmail.com
-baseurl: ""
+baseurl: "/OmbrePercorsi"
 url: "https://pietro00b.github.io"
 github_username: pietro00b
 
-# SEO settings
-twitter_username: ombreepercorsi
-facebook_username: ombreepercorsi
-instagram_username: ombreepercorsi
-
-# Build settings
+# Configurazione del tema
+highlighter: rouge
 markdown: kramdown
 paginate: 5
 paginate_path: "/pagina/:num/"
-permalink: /:year/:month/:day/:title/
-inter_post_navigation: true
-highlightjs_theme: "monokai-sublime"
 
-# Archive settings
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layout: archive
-  permalinks:
-    category: '/categoria/:name/'
-    tag: '/tag/:name/'
+# Plugin
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
 
-# Disqus comments
-disqus_shortname: ombreepercorsi
-
-# Collections
+# Configurazione della collezione storie
 collections:
   storie:
     output: true
     permalink: /:collection/:name/
 
-# Defaults
+# Layout predefiniti
 defaults:
   - scope:
       path: ""
@@ -49,10 +36,30 @@ defaults:
       path: "assets/img"
     values:
       image: true
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
 
-# Plugin
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-archives
-  - jekyll-seo-tag
+# Configurazione social
+social:
+  - name: GitHub
+    icon: github
+    username: pietro00b
+    url: https://github.com/pietro00b
+  - name: Instagram
+    icon: instagram
+    username: 
+    url: 
+
+# Dettagli header
+header_pages:
+  - about.md
+  - archivio.md
+  - galleria.md
+  - contatti.md
+
+# Configurazione dei post
+show_excerpts: true
+excerpt_separator: <!--more-->
