@@ -1,0 +1,84 @@
+---
+layout: default
+---
+<article class="storia">
+  <header class="storia-header">
+    <div class="header-container">
+      <h1 class="storia-title">{{ page.title }}</h1>
+      <div class="storia-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%d/%m/%Y" }}
+        </time>
+        {% if page.location %}
+          <span class="storia-location">
+            <i class="fas fa-map-marker-alt"></i> {{ page.location }}
+          </span>
+        {% endif %}
+        
+        {% if page.categories.size > 0 %}
+        <div class="storia-categories">
+          {% for category in page.categories %}
+          <a href="{{ site.baseurl }}/categoria/{{ category | slugify }}/" class="category">{{ category }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if page.tags.size > 0 %}
+        <div class="storia-tags">
+          {% for tag in page.tags %}
+          <a href="{{ site.baseurl }}/tag/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <section class="storia-content post-content">
+    {{ content }}
+  </section>
+
+  {% if page.gallery %}
+  <section class="storia-gallery">
+    <h2>Galleria Fotografica</h2>
+    {% include gallery.html images=page.gallery %}
+  </section>
+  {% endif %}
+
+  <div class="storia-navigation">
+    <div class="storia-navigation-prev">
+      {% if page.previous.url %}
+      <a href="{{ page.previous.url | relative_url }}" class="prev">
+        <i class="fas fa-arrow-left"></i> {{ page.previous.title }}
+      </a>
+      {% endif %}
+    </div>
+    <div class="storia-navigation-next">
+      {% if page.next.url %}
+      <a href="{{ page.next.url | relative_url }}" class="next">
+        {{ page.next.title }} <i class="fas fa-arrow-right"></i>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if site.disqus_shortname %}
+  <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = '{{ site.disqus_shortname }}';
+      var disqus_identifier = '{{ page.id }}';
+      var disqus_title = "{{ page.title }}";
+      var disqus_url = '{{ site.url }}{{ page.url }}';
+
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </section>
+  {% endif %}
+</article>
