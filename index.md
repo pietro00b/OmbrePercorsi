@@ -6,7 +6,7 @@ title: Home
 <div class="home">
   <div class="site-header-container">
     <div class="site-header-content">
-      <h1 class="title">Ombre e Percorsi</h1>
+   
       <h2 class="subtitle">Tracce di luoghi, storie e persone</h2>
     </div>
   </div>
