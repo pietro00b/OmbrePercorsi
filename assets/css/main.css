@@ -428,3 +428,42 @@ img {
     gap: 15px;
   }
 }
+
+/* Stile centrato per gli articoli */
+.storia-content {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+/* Stile centrato per l'intestazione degli articoli */
+.storia-header {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Stile per la navigazione degli articoli */
+.storia-navigation {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Stile per i commenti */
+.storia-comments {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Aggiungere per le immagini della galleria affinché mantengano proporzioni */
+.storia-gallery {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
