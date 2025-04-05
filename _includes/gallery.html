@@ -1,0 +1,13 @@
+<!-- File: _includes/gallery.html -->
+<div class="image-gallery">
+  {% for image in include.images %}
+    <div class="gallery-item">
+      <a href="{{ site.baseurl }}/assets/img/{{ image }}" class="lightbox">
+        <img src="{{ site.baseurl }}/assets/img/{{ image }}" alt="Immagine della galleria">
+      </a>
+      {% if image.caption %}
+        <p class="caption">{{ image.caption }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
